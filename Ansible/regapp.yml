@@ -1,0 +1,14 @@
+---
+- hosts: ansible
+
+  tasks:
+    - name: create docker image
+      command: docker build -t regapp:latest .
+      args:
+        chdir: /opt/docker
+
+    - name: create docker tag
+      command: docker tag regapp:latest subhadepp/regapp:latest
+
+    - name: push image to docker hub
+      command: docker push subhadepp/regapp:latest
